@@ -1,0 +1,26 @@
+from bs4 import BeautifulSoup
+import requests
+
+
+# Get html from the file
+#fp = open(r'something.html')
+
+
+ #Get html from a page online using requests. UNCOMMENT these and type url in the double quotes after page_address
+page_address = "http://192.168.81.130"
+fp = requests.get(page_address)
+
+#Get the html of the page
+soup = BeautifulSoup(fp.text,'lxml')
+html_string = str(soup)
+
+
+#Get all the headings
+headings = soup.find_all(["h1","h2","h3","h4","h5","h6"])
+
+
+#Check how many times apache appears
+num = html_string.count('apache2') + html_string.count('Apache2')
+
+print("List of headings: ")
+print(headings)
